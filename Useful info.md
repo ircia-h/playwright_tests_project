@@ -3,4 +3,3 @@
 ## Design patterns
 
 - AAA - Arrange Act Assert
-

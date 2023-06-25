@@ -5,7 +5,7 @@
 - `test.only` - runs a single tests
 - `test.describe('login tests', () => {});` - groups tests by title
 - `test.getByTestId` - search for attribute data-testid on the page  
-should only be present in test version of the application
+  should only be present in test version of the application
 - blur - unset focus from an element
 
 ### CSS Selectiors
@@ -13,8 +13,9 @@ should only be present in test version of the application
 - `#` - Id
 
 ## Visual Studio Code howto
+
 - File -> Auto-save
 
 ### Shortcuts
-- Shift-Alt-/ - format document
 
+- Shift-Alt-/ - format document
