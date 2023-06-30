@@ -1,22 +1,25 @@
 import { test, expect, selectors } from "@playwright/test";
 import { loginValidUser, loginInvalidUser } from "./helpers";
 
-const url = "https://demo-bank.vercel.app/";
-const username = "testerLO";
-const password = "qwerty12";
-
 test.describe("desktop tests", () => {
+  test.beforeEach(async ({ page }) => {
+    const username = "testerLO";
+    const password = "qwerty12";
+    const url = "https://demo-bank.vercel.app/";
+
+    await page.goto(url);
+    await loginValidUser(page, username, password);
+  });
+
   test("positive simple transfer test", async ({ page }) => {
     //Arrange
     const receiverId = "2";
     const transferAmount = "90";
     const transferTitle = "Cele charytatywne";
     const transferReceipient = "Chuck Demobankowy";
+    const expectedErrorMessage = `Przelew wykonany! ${transferReceipient} - ${transferAmount},00PLN - ${transferTitle}`;
 
     //Act
-    await page.goto(url);
-    await loginValidUser(page, username, password);
-
     await page.locator("#widget_1_transfer_receiver").selectOption(receiverId);
     await page.locator("#widget_1_transfer_amount").fill(transferAmount);
     await page.locator("#widget_1_transfer_title").fill(transferTitle);
@@ -27,7 +30,7 @@ test.describe("desktop tests", () => {
     await page.getByTestId("close-button").click();
 
     await expect(page.getByTestId("message-text")).toHaveText(
-      `Przelew wykonany! ${transferReceipient} - ${transferAmount},00PLN - ${transferTitle}`
+      expectedErrorMessage
     );
   });
 
@@ -35,11 +38,9 @@ test.describe("desktop tests", () => {
     //Arrange
     const topupReceiver = "500 xxx xxx";
     const topupAmount = "70";
+    const expectedErrorMessage = `Doładowanie wykonane! ${topupAmount},00PLN na numer ${topupReceiver}`;
 
     //Act
-    await page.goto(url);
-    await loginValidUser(page, username, password);
-
     await page.locator("#widget_1_topup_receiver").selectOption(topupReceiver);
     await page.locator("#widget_1_topup_amount").fill(topupAmount);
     await page.locator("#uniform-widget_1_topup_agreement span").click();
@@ -52,7 +53,7 @@ test.describe("desktop tests", () => {
     await page.getByTestId("close-button").click();
 
     await expect(page.getByTestId("message-text")).toHaveText(
-      `Doładowanie wykonane! ${topupAmount},00PLN na numer ${topupReceiver}`
+      expectedErrorMessage
     );
   });
 });

@@ -1,21 +1,45 @@
-# Playwright – Praktyczne wprowadzenie do testów automatycznych
+# Useful information from the course
 
 ## Playwright tips&tricks
 
 - `test.only` - runs a single tests
-- `test.describe('login tests', () => {});` - groups tests by title
+- `test.describe('login tests', () => {});` - groups tests by title  
+  * doesn't accept the parameters yet
 - `test.getByTestId` - search for attribute data-testid on the page  
   should only be present in test version of the application
 - blur - unset focus from an element
+
+### PW cmd
+- npx playwright show-report
+- npx playwright test tests/login.spec.ts (will not work in Win terminal format ex. .\tests\login.spec.ts)
+
+### PW Trace viewer
+- open package trace.zip:
+Navigate to test-results\<test_name> -> right-click "Open in integrated terminal"
+Run the command npx playwright show-trace trace.zip
+
+
+## General knowledge
+
+### Design patterns
+
+- AAA - Arrange Act Assert
 
 ### CSS Selectiors
 
 - `#` - Id
 
-## Visual Studio Code howto
+### VSC howto
 
 - File -> Auto-save
 
-### Shortcuts
+#### Shortcuts
 
 - Shift-Alt-/ - format document
+
+
+
+
+
+
+

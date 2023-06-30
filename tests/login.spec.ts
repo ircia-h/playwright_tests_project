@@ -1,19 +1,22 @@
 import { test, expect, selectors, Page } from "@playwright/test";
 import { loginValidUser, loginInvalidUser } from "./helpers";
 
-const url = "https://demo-bank.vercel.app/";
 const username = "testerLO";
 const password = "qwerty12";
 const invalidUsername = "tester";
 const invalidPassword = "qwerty";
 
 test.describe("login tests", () => {
+  test.beforeEach(async ({ page }) => {
+    const url = "https://demo-bank.vercel.app/";
+    await page.goto(url);
+  });
+
   test("positive login test with valid credentials", async ({ page }) => {
     //Arrange
     const expectedUsername = "Jan Demobankowy";
 
     //Act
-    await page.goto(url);
     await loginValidUser(page, username, password);
     await page.getByTestId("user-name").click();
 
@@ -26,7 +29,6 @@ test.describe("login tests", () => {
     const expectedErrorMessage = "identyfikator ma min. 8 znaków";
 
     //Act
-    await page.goto(url);
     await loginInvalidUser(page, invalidUsername, password);
 
     //Assert
@@ -44,7 +46,6 @@ test.describe("login tests", () => {
     const expectedErrorMessage = "hasło ma min. 8 znaków";
 
     //Act
-    await page.goto(url);
     await loginInvalidUser(page, username, invalidPassword);
 
     //Assert
