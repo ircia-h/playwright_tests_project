@@ -12,6 +12,10 @@
 ### PW cmd
 - npx playwright show-report
 - npx playwright test tests/login.spec.ts (will not work in Win terminal format ex. .\tests\login.spec.ts)
+- scrips:
+  * in order to create a script (A) which runs another script (B) and pass parameters from A to B,  
+  there should be extra `--` added before the parameters:
+  `"test:desktop:headed" : "npm run test tests/desktop.spec.ts -- --headed"`
 
 ### PW Trace viewer
 - open package trace.zip:

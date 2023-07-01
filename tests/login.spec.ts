@@ -3,13 +3,10 @@ import { loginValidUser, loginInvalidUser } from "./helpers";
 
 const username = "testerLO";
 const password = "qwerty12";
-const invalidUsername = "tester";
-const invalidPassword = "qwerty";
 
 test.describe("login tests", () => {
   test.beforeEach(async ({ page }) => {
-    const url = "https://demo-bank.vercel.app/";
-    await page.goto(url);
+    await page.goto("/");
   });
 
   test("positive login test with valid credentials", async ({ page }) => {
@@ -27,6 +24,7 @@ test.describe("login tests", () => {
   test("negative login test with invalid username", async ({ page }) => {
     //Arrange
     const expectedErrorMessage = "identyfikator ma min. 8 znaków";
+    const invalidUsername = "tester";
 
     //Act
     await loginInvalidUser(page, invalidUsername, password);
@@ -44,6 +42,7 @@ test.describe("login tests", () => {
   test("negative login test with invalid password", async ({ page }) => {
     //Arrange
     const expectedErrorMessage = "hasło ma min. 8 znaków";
+    const invalidPassword = "qwerty";
 
     //Act
     await loginInvalidUser(page, username, invalidPassword);

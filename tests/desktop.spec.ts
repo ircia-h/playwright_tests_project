@@ -5,9 +5,8 @@ test.describe("desktop tests", () => {
   test.beforeEach(async ({ page }) => {
     const username = "testerLO";
     const password = "qwerty12";
-    const url = "https://demo-bank.vercel.app/";
 
-    await page.goto(url);
+    await page.goto("/");
     await loginValidUser(page, username, password);
   });
 
