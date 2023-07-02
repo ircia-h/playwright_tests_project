@@ -1,5 +1,5 @@
-import { test, expect, selectors } from "@playwright/test";
-import { loginValidUser, loginInvalidUser } from "./helpers";
+import { test, expect } from "@playwright/test";
+import { loginValidUser } from "./helpers";
 import { loginData } from "../test-data/login.data";
 
 test.describe("desktop tests", () => {

@@ -1,4 +1,4 @@
-import { test, expect, selectors, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 
 export async function loginValidUser(
   page: Page,

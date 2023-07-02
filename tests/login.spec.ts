@@ -1,4 +1,4 @@
-import { test, expect, selectors, Page } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { loginValidUser, loginInvalidUser } from "./helpers";
 import { loginData, invalidLoginData } from "../test-data/login.data";
 
