@@ -1,8 +1,6 @@
 import { test, expect, selectors, Page } from "@playwright/test";
 import { loginValidUser, loginInvalidUser } from "./helpers";
-
-const username = "testerLO";
-const password = "qwerty12";
+import { loginData, invalidLoginData } from "../test-data/login.data";
 
 test.describe("login tests", () => {
   test.beforeEach(async ({ page }) => {
@@ -14,7 +12,7 @@ test.describe("login tests", () => {
     const expectedUsername = "Jan Demobankowy";
 
     //Act
-    await loginValidUser(page, username, password);
+    await loginValidUser(page, loginData.userId, loginData.password);
     await page.getByTestId("user-name").click();
 
     //Assert
@@ -24,10 +22,9 @@ test.describe("login tests", () => {
   test("negative login test with invalid username", async ({ page }) => {
     //Arrange
     const expectedErrorMessage = "identyfikator ma min. 8 znaków";
-    const invalidUsername = "tester";
 
     //Act
-    await loginInvalidUser(page, invalidUsername, password);
+    await loginInvalidUser(page, invalidLoginData.userId, loginData.password);
 
     //Assert
     await expect(page.getByTestId("login-button")).toHaveAttribute(
@@ -42,10 +39,9 @@ test.describe("login tests", () => {
   test("negative login test with invalid password", async ({ page }) => {
     //Arrange
     const expectedErrorMessage = "hasło ma min. 8 znaków";
-    const invalidPassword = "qwerty";
 
     //Act
-    await loginInvalidUser(page, username, invalidPassword);
+    await loginInvalidUser(page, loginData.userId, invalidLoginData.password);
 
     //Assert
     await expect(page.getByTestId("login-button")).toHaveAttribute(

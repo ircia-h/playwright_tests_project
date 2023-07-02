@@ -1,13 +1,11 @@
 import { test, expect, selectors } from "@playwright/test";
 import { loginValidUser, loginInvalidUser } from "./helpers";
+import { loginData } from "../test-data/login.data";
 
 test.describe("desktop tests", () => {
   test.beforeEach(async ({ page }) => {
-    const username = "testerLO";
-    const password = "qwerty12";
-
     await page.goto("/");
-    await loginValidUser(page, username, password);
+    await loginValidUser(page, loginData.userId, loginData.password);
   });
 
   test("positive simple transfer test", async ({ page }) => {
