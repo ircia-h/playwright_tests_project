@@ -29,6 +29,6 @@ test.describe("payment tests", () => {
     await paymentPage.popupCloseButton.click();
 
     //Assert
-    await expect(paymentPage.messageText).toHaveText(expectedMessage);
+    await expect(paymentPage.messageTextLabel).toHaveText(expectedMessage);
   });
 });

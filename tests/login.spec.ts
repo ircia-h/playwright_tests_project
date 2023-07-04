@@ -18,7 +18,7 @@ test.describe("login tests", () => {
 
     //Assert
     const desktopPage = new DesktopPage(page);
-    await expect(desktopPage.username).toHaveText(expectedUsername);
+    await expect(desktopPage.usernameLabel).toHaveText(expectedUsername);
   });
 
   test("negative login test with invalid username", async ({ page }) => {

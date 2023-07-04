@@ -29,7 +29,7 @@ test.describe("desktop tests", () => {
     await desktopPage.popupCloseButton.click();
 
     //Assert
-    await expect(desktopPage.messageText).toHaveText(expectedErrorMessage);
+    await expect(desktopPage.messageTextLabel).toHaveText(expectedErrorMessage);
   });
 
   test("positive phone top-up test", async ({ page }) => {
@@ -44,6 +44,6 @@ test.describe("desktop tests", () => {
     await desktopPage.popupCloseButton.click();
 
     //Assert
-    await expect(desktopPage.messageText).toHaveText(expectedErrorMessage);
+    await expect(desktopPage.messageTextLabel).toHaveText(expectedErrorMessage);
   });
 });

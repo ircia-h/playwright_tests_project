@@ -4,12 +4,12 @@ export class PaymentPage {
   constructor(private page: Page) {}
 
   popupCloseButton = this.page.getByTestId("close-button");
-  messageText = this.page.locator("#show_messages");
+  messageTextLabel = this.page.locator("#show_messages");
 
   // transfer controls
-  transferReceiver = this.page.getByTestId("transfer_receiver");
-  transferToAccountNumber = this.page.getByTestId("form_account_to");
-  transferAmount = this.page.getByTestId("form_amount");
+  transferReceiverInput = this.page.getByTestId("transfer_receiver");
+  transferToAccountInput = this.page.getByTestId("form_account_to");
+  transferAmountInput = this.page.getByTestId("form_amount");
   transferExecuteButton = this.page.getByRole("button", {
     name: "wykonaj przelew",
   });
@@ -19,9 +19,9 @@ export class PaymentPage {
     transferToAccountNumber: string,
     transferAmount: string
   ) {
-    await this.transferReceiver.fill(transferReceiver);
-    await this.transferToAccountNumber.fill(transferToAccountNumber);
-    await this.transferAmount.fill(transferAmount);
+    await this.transferReceiverInput.fill(transferReceiver);
+    await this.transferToAccountInput.fill(transferToAccountNumber);
+    await this.transferAmountInput.fill(transferAmount);
     await this.transferExecuteButton.click();
   }
 }
