@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { loginValidUser, loginInvalidUser } from "./helpers";
 import { loginData, invalidLoginData } from "../test-data/login.data";
+import { LoginPage } from "../pages/login.page";
+import { DesktopPage } from "../pages/desktop.page";
 
 test.describe("login tests", () => {
   test.beforeEach(async ({ page }) => {
@@ -12,11 +13,12 @@ test.describe("login tests", () => {
     const expectedUsername = "Jan Demobankowy";
 
     //Act
-    await loginValidUser(page, loginData.userId, loginData.password);
-    await page.getByTestId("user-name").click();
+    const loginPage = new LoginPage(page);
+    loginPage.loginValidUser(loginData.userId, loginData.password);
 
     //Assert
-    await expect(page.getByTestId("user-name")).toHaveText(expectedUsername);
+    const desktopPage = new DesktopPage(page);
+    await expect(desktopPage.username).toHaveText(expectedUsername);
   });
 
   test("negative login test with invalid username", async ({ page }) => {
@@ -24,16 +26,15 @@ test.describe("login tests", () => {
     const expectedErrorMessage = "identyfikator ma min. 8 znaków";
 
     //Act
-    await loginInvalidUser(page, invalidLoginData.userId, loginData.password);
+    const loginPage = new LoginPage(page);
+    loginPage.loginInvalidUser(
+      invalidLoginData.userId,
+      invalidLoginData.password
+    );
 
     //Assert
-    await expect(page.getByTestId("login-button")).toHaveAttribute(
-      "disabled",
-      ""
-    );
-    await expect(page.getByTestId("error-login-id")).toHaveText(
-      expectedErrorMessage
-    );
+    await expect(loginPage.loginButton).toHaveAttribute("disabled", "");
+    await expect(loginPage.loginErrorMessage).toHaveText(expectedErrorMessage);
   });
 
   test("negative login test with invalid password", async ({ page }) => {
@@ -41,14 +42,15 @@ test.describe("login tests", () => {
     const expectedErrorMessage = "hasło ma min. 8 znaków";
 
     //Act
-    await loginInvalidUser(page, loginData.userId, invalidLoginData.password);
+    const loginPage = new LoginPage(page);
+    loginPage.loginInvalidUser(
+      invalidLoginData.userId,
+      invalidLoginData.password
+    );
 
     //Assert
-    await expect(page.getByTestId("login-button")).toHaveAttribute(
-      "disabled",
-      ""
-    );
-    await expect(page.getByTestId("error-login-password")).toHaveText(
+    await expect(loginPage.loginButton).toHaveAttribute("disabled", "");
+    await expect(loginPage.passwordErrorMessage).toHaveText(
       expectedErrorMessage
     );
   });

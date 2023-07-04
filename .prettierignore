@@ -1,2 +1,4 @@
 package-lock.json
+package.json
 playwright-report
+playwright.config.ts

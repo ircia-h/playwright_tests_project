@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test" : "npx playwright test",
-    "test:headed" : "npx playwright test --headed",
-    "test:desktop" : "npm run test tests/desktop.spec.ts",
-    "test:desktop:headed" : "npm run test tests/desktop.spec.ts -- --headed"
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:desktop": "npm run test tests/desktop.spec.ts",
+    "test:login" : "npm run test tests/login.spec.ts",
+    "test:desktop:headed": "npm run test tests/desktop.spec.ts -- --headed"
   },
   "keywords": [],
   "author": "",
