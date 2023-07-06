@@ -1,7 +1,10 @@
 import { Page } from "@playwright/test";
+import { SideMenuComponent } from "../components/side-menu.component";
 
 export class LoginPage {
   constructor(private page: Page) {}
+
+  sideMenu = new SideMenuComponent(this.page);
 
   loginInput = this.page.getByTestId("login-input");
   passwordInput = this.page.getByTestId("password-input");

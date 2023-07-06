@@ -1,7 +1,10 @@
 import { Page } from "@playwright/test";
+import { SideMenuComponent } from "../components/side-menu.component";
 
 export class DesktopPage {
   constructor(private page: Page) {}
+
+  sideMenu = new SideMenuComponent(this.page);
 
   usernameLabel = this.page.getByTestId("user-name");
   messageTextLabel = this.page.getByTestId("message-text");

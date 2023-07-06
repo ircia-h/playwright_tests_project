@@ -1,10 +1,13 @@
 import { Page } from "@playwright/test";
+import { SideMenuComponent } from "../components/side-menu.component";
 
 export class PaymentPage {
   constructor(private page: Page) {}
 
   popupCloseButton = this.page.getByTestId("close-button");
   messageTextLabel = this.page.locator("#show_messages");
+
+  sideMenu = new SideMenuComponent(this.page);
 
   // transfer controls
   transferReceiverInput = this.page.getByTestId("transfer_receiver");
