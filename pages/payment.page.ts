@@ -17,11 +17,11 @@ export class PaymentPage {
     name: "wykonaj przelew",
   });
 
-  public async transferToAccountExecute(
+  async transferToAccountExecute(
     transferReceiver: string,
     transferToAccountNumber: string,
     transferAmount: string
-  ) {
+  ): Promise<void> {
     await this.transferReceiverInput.fill(transferReceiver);
     await this.transferToAccountInput.fill(transferToAccountNumber);
     await this.transferAmountInput.fill(transferAmount);

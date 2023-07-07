@@ -24,18 +24,21 @@ export class DesktopPage {
   );
   topupExecuteButton = this.page.locator("#execute_phone_btn");
 
-  public async fastTransferExecute(
+  async fastTransferExecute(
     transferReceiver: string,
     transferAmount: string,
     transferTitle: string
-  ) {
+  ): Promise<void> {
     await this.transferReceiverDropdown.selectOption(transferReceiver);
     await this.transferAmountInput.fill(transferAmount);
     await this.transferTitleInput.fill(transferTitle);
     await this.transferExecuteButton.click();
   }
 
-  public async mobileTopupExecute(topupReceiver: string, topupAmount: string) {
+  async mobileTopupExecute(
+    topupReceiver: string,
+    topupAmount: string
+  ): Promise<void> {
     await this.topupReceiverDropdown.selectOption(topupReceiver);
     await this.topupAmountInput.fill(topupAmount);
     await this.topupAgreementCheckbox.click();

@@ -4,8 +4,10 @@ import { LoginPage } from "../pages/login.page";
 import { DesktopPage } from "../pages/desktop.page";
 
 test.describe("login tests", () => {
+  let loginPage: LoginPage;
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
+    loginPage = new LoginPage(page);
   });
 
   test("positive login test with valid credentials", async ({ page }) => {
@@ -13,8 +15,7 @@ test.describe("login tests", () => {
     const expectedUsername = "Jan Demobankowy";
 
     //Act
-    const loginPage = new LoginPage(page);
-    loginPage.loginValidUser(loginData.userId, loginData.password);
+    await loginPage.loginValidUser(loginData.userId, loginData.password);
 
     //Assert
     const desktopPage = new DesktopPage(page);
@@ -26,10 +27,9 @@ test.describe("login tests", () => {
     const expectedErrorMessage = "identyfikator ma min. 8 znaków";
 
     //Act
-    const loginPage = new LoginPage(page);
-    loginPage.loginInvalidUser(
+    await loginPage.loginInvalidUser(
       invalidLoginData.userId,
-      invalidLoginData.password
+      loginData.password
     );
 
     //Assert
@@ -42,9 +42,8 @@ test.describe("login tests", () => {
     const expectedErrorMessage = "hasło ma min. 8 znaków";
 
     //Act
-    const loginPage = new LoginPage(page);
-    loginPage.loginInvalidUser(
-      invalidLoginData.userId,
+    await loginPage.loginInvalidUser(
+      loginData.userId,
       invalidLoginData.password
     );
 

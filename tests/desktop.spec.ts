@@ -4,11 +4,14 @@ import { LoginPage } from "../pages/login.page";
 import { DesktopPage } from "../pages/desktop.page";
 
 test.describe("desktop tests", () => {
+  let desktopPage: DesktopPage;
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
 
     const loginPage = new LoginPage(page);
-    loginPage.loginValidUser(loginData.userId, loginData.password);
+    await loginPage.loginValidUser(loginData.userId, loginData.password);
+
+    desktopPage = new DesktopPage(page);
   });
 
   test("positive simple transfer test", async ({ page }) => {
@@ -20,8 +23,7 @@ test.describe("desktop tests", () => {
     const expectedErrorMessage = `Przelew wykonany! ${transferReceiverName} - ${transferAmount},00PLN - ${transferTitle}`;
 
     //Act
-    const desktopPage = new DesktopPage(page);
-    desktopPage.fastTransferExecute(
+    await desktopPage.fastTransferExecute(
       transferReceiverId,
       transferAmount,
       transferTitle
@@ -39,7 +41,6 @@ test.describe("desktop tests", () => {
     const expectedErrorMessage = `Doładowanie wykonane! ${topupAmount},00PLN na numer ${topupReceiver}`;
 
     //Act
-    const desktopPage = new DesktopPage(page);
     await desktopPage.mobileTopupExecute(topupReceiver, topupAmount);
     await desktopPage.popupCloseButton.click();
 

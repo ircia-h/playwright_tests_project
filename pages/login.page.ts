@@ -12,13 +12,13 @@ export class LoginPage {
   passwordErrorMessage = this.page.getByTestId("error-login-password");
   loginErrorMessage = this.page.getByTestId("error-login-id");
 
-  public async loginValidUser(username: string, password: string) {
+  async loginValidUser(username: string, password: string): Promise<void> {
     await this.loginInput.fill(username);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
   }
 
-  public async loginInvalidUser(username: string, password: string) {
+  async loginInvalidUser(username: string, password: string): Promise<void> {
     await this.loginInput.fill(username);
     await this.passwordInput.fill(password);
     await this.passwordInput.blur();

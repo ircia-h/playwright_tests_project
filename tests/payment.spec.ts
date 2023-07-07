@@ -5,14 +5,17 @@ import { PaymentPage } from "../pages/payment.page";
 import { DesktopPage } from "../pages/desktop.page";
 
 test.describe("payment tests", () => {
+  let paymentPage: PaymentPage;
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
 
     const loginPage = new LoginPage(page);
-    loginPage.loginValidUser(loginData.userId, loginData.password);
+    await loginPage.loginValidUser(loginData.userId, loginData.password);
 
     const desktopPage = new DesktopPage(page);
     await desktopPage.sideMenu.paymentMenuOptionLink.click();
+
+    paymentPage = new PaymentPage(page);
   });
 
   test("positive simple payment test", async ({ page }) => {
@@ -23,8 +26,7 @@ test.describe("payment tests", () => {
     const expectedMessage = `Przelew wykonany! ${transferAmount},00PLN dla ${transferReceiver}`;
 
     //Act
-    const paymentPage = new PaymentPage(page);
-    paymentPage.transferToAccountExecute(
+    await paymentPage.transferToAccountExecute(
       transferReceiver,
       transferAccountTo,
       transferAmount
