@@ -17,7 +17,7 @@ export class PaymentPage {
     name: "wykonaj przelew",
   });
 
-  async transferToAccountExecute(
+  async executeTransferToAccount(
     transferReceiver: string,
     transferToAccountNumber: string,
     transferAmount: string

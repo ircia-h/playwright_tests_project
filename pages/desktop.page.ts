@@ -24,7 +24,7 @@ export class DesktopPage {
   );
   topupExecuteButton = this.page.locator("#execute_phone_btn");
 
-  async fastTransferExecute(
+  async executeFastTransfer(
     transferReceiver: string,
     transferAmount: string,
     transferTitle: string
@@ -35,7 +35,7 @@ export class DesktopPage {
     await this.transferExecuteButton.click();
   }
 
-  async mobileTopupExecute(
+  async executeMobileTopup(
     topupReceiver: string,
     topupAmount: string
   ): Promise<void> {

@@ -15,7 +15,7 @@ test.describe("login tests", () => {
     const expectedUsername = "Jan Demobankowy";
 
     //Act
-    await loginPage.loginValidUser(loginData.userId, loginData.password);
+    await loginPage.executeLoginValidUser(loginData.userId, loginData.password);
 
     //Assert
     const desktopPage = new DesktopPage(page);
@@ -27,7 +27,7 @@ test.describe("login tests", () => {
     const expectedErrorMessage = "identyfikator ma min. 8 znaków";
 
     //Act
-    await loginPage.loginInvalidUser(
+    await loginPage.executeLoginInvalidUser(
       invalidLoginData.userId,
       loginData.password
     );
@@ -42,7 +42,7 @@ test.describe("login tests", () => {
     const expectedErrorMessage = "hasło ma min. 8 znaków";
 
     //Act
-    await loginPage.loginInvalidUser(
+    await loginPage.executeLoginInvalidUser(
       loginData.userId,
       invalidLoginData.password
     );

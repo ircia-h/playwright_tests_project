@@ -9,7 +9,7 @@ test.describe("desktop tests", () => {
     await page.goto("/");
 
     const loginPage = new LoginPage(page);
-    await loginPage.loginValidUser(loginData.userId, loginData.password);
+    await loginPage.executeLoginValidUser(loginData.userId, loginData.password);
 
     desktopPage = new DesktopPage(page);
   });
@@ -23,7 +23,7 @@ test.describe("desktop tests", () => {
     const expectedErrorMessage = `Przelew wykonany! ${transferReceiverName} - ${transferAmount},00PLN - ${transferTitle}`;
 
     //Act
-    await desktopPage.fastTransferExecute(
+    await desktopPage.executeFastTransfer(
       transferReceiverId,
       transferAmount,
       transferTitle
@@ -41,7 +41,7 @@ test.describe("desktop tests", () => {
     const expectedErrorMessage = `Doładowanie wykonane! ${topupAmount},00PLN na numer ${topupReceiver}`;
 
     //Act
-    await desktopPage.mobileTopupExecute(topupReceiver, topupAmount);
+    await desktopPage.executeMobileTopup(topupReceiver, topupAmount);
     await desktopPage.popupCloseButton.click();
 
     //Assert

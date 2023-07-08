@@ -10,7 +10,7 @@ test.describe("payment tests", () => {
     await page.goto("/");
 
     const loginPage = new LoginPage(page);
-    await loginPage.loginValidUser(loginData.userId, loginData.password);
+    await loginPage.executeLoginValidUser(loginData.userId, loginData.password);
 
     const desktopPage = new DesktopPage(page);
     await desktopPage.sideMenu.paymentMenuOptionLink.click();
@@ -26,7 +26,7 @@ test.describe("payment tests", () => {
     const expectedMessage = `Przelew wykonany! ${transferAmount},00PLN dla ${transferReceiver}`;
 
     //Act
-    await paymentPage.transferToAccountExecute(
+    await paymentPage.executeTransferToAccount(
       transferReceiver,
       transferAccountTo,
       transferAmount
