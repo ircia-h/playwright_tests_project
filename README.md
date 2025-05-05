@@ -32,7 +32,19 @@
 
 ### CSS Selectiors
 
-- `#` - Id
+- `#element_id` - Id
+- `.class_name` - Class
+- `[attribute="value"]` - By attribute
+
+### XPATH Selectors
+
+- `\\type[@attribute="value"]` - Serach in the whole document
+- `\\*[@attribute="value"]` - if type is unknown
+
+#### Search in console
+
+- `$$('selector_CSS')`
+- `$x('selector_XPath')`
 
 ### VSC howto
 
